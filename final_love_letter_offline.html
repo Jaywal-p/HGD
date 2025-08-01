@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Love Letter</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #ffe6eb;
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      margin: 0;
+    }
+
+    .envelope-container {
+      position: relative;
+      width: 320px;
+      height: 210px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #ffb6c1;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-bottom: 105px solid #ff99aa;
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 2;
+    }
+
+    .letter {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      background: #fff0f5;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      transition: top 1.2s ease;
+      z-index: 1;
+      overflow-y: auto;
+      max-height: 70vh;
+    }
+
+    .letter h1 {
+      color: #ff4d6d;
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .letter p {
+      color: #333;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .hearts {
+      position: absolute;
+      font-size: 26px;
+      animation: float 4s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    .blossom {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      color: pink;
+      z-index: 1;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-container" id="env">
+    <div class="flap" id="flap"></div>
+    <div class="envelope"></div>
+
+    <div class="letter" id="letter">
+      <h1>HAPPIEST GIRLFRIEND'S DAY ❤️</h1>
+      <p>
+        HAPPIEST GIRLFRIEND’S DAY PRIYUUUU!!!!<br>
+        I am genuinely the happiest man in this world to have a girlfriend like you. You complete me!<br>
+        I love how you understand me! You're prettier than the most beautiful sunset, the most gorgeous flower field, the most breathtaking night sky!<br>
+        Prettiest in this whole wide world!<br>
+        You're so amazing I don't even know what to compare you with! You literally mean the world to me! 🌎<br>
+        I love you more and more every day!<br>
+        I am proud of you! I am grateful for you!!<br>
+        ☺️🥰😘😘😘
+      </p>
+    </div>
+
+    <div class="hearts" style="top:-30px;left:20px;">❤️</div>
+    <div class="hearts" style="top:20px;right:-20px;">💖</div>
+    <div class="hearts" style="bottom:-20px;left:50px;">💕</div>
+  </div>
+
+  <!-- Embedded Base64 Audio -->
+  <audio id="bgm" loop preload="auto" playsinline>
+    <source src="data:audio/mp3;base64,YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGvEB0LDJ6foKGio6SuXGGxt7i8v8LIzs/S1tfc5ufs7VUkbnVsbN8QTA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5bX1xhXGFeW1xeYWheYWFeYW5vcHFyYXReXl5eXnp7YX1eXmFcXlxbWl57YVyIXl5ai1tejV5hkGFhXGGVXlteXmFeXl5eXxASX3Vuc3VwcG9ydGVkRmllbGRzXxAXX3R5cGVBbmRDcmVhdG9yLmNyZWF0b3JfEBdfaW5oZXJpdGVkQ29udGVudFBvbGljeVpfdXBsb2FkaW5nXF9kaXNwbGF5TmFtZV8QD19vcmlnaW5hdG9ySW5mb15fZXhjbHVzaW9uVHlwZV8QEF9maWxlU3lzdGVtRmxhZ3NdX2lzVWJpcXVpdG91c1xfZG93bmxvYWRpbmdfECRfc3VwcG9ydHNNb3N0UmVjZW50VmVyc2lvbkRvd25sb2FkZWRfEB1fZnBfbGFzdE1vZGlmaWVkQnlDdXJyZW50VXNlcl8QE19leHRlbmRlZEF0dHJpYnV0ZXNXX2ZpbGVJRFtfZG93bmxvYWRlZF8QEV9mb3JtZXJJZGVudGlmaWVyWV91cGxvYWRlZF1fbGFzdFVzZWREYXRlXxAUX2NvbmZsaWN0aW5nVmVyc2lvbnNXX3Bpbm5lZF8QFF9pc0NvbnRhaW5lclByaXN0aW5lXxAYX2NvbGxhYm9yYXRpb25JZGVudGlmaWVyXxATX2lzRXZpY3RlZFdpdGhDbG9uZV8QD19pdGVtSWRlbnRpZmllcl8QE19wcm92aWRlcklkZW50aWZpZXJcX2NvbnRlbnRUeXBlXV9kb2N1bWVudFNpemVfEBJfZW51bWVyYXRpb25PcmlnaW5cX2lzQ29udGFpbmVyWV9maWxlbmFtZVxfZGVjb3JhdGlvbnNfEBVfY29udGFpbmVyRGlzcGxheU5hbWVfEBpfc3BvdGxpZ2h0RG9tYWluSWRlbnRpZmllcl8QIF9mcF9hcHBDb250YWluZXJCdW5kbGVJZGVudGlmaWVyXxAZX2Nsb3VkQ29udGFpbmVySWRlbnRpZmllcl8QEV9kb21haW5JZGVudGlmaWVyXV9jcmVhdGlvbkRhdGVfEBNfdG9wTGV2ZWxTaGFyZWRJdGVtVHJzZGlfEBFfZG93bmxvYWRpbmdFcnJvcl8QF19kZXRhY2hlZFJvb3RMb2dpY2FsVVJMV19zaGFyZWRfEBZfcmVjdXJzaXZlbHlEb3dubG9hZGVkXxAPX2NoaWxkSXRlbUNvdW50XxAiX2FsbG93c0NvbnRleHR1YWxNZW51RG93bmxvYWRFbnRyeV5fY29udGVudFBvbGljeV8QFF90eXBlQW5kQ3JlYXRvci50eXBlXV9mYXZvcml0ZVJhbmtfEBhfY29udGVudE1vZGlmaWNhdGlvbkRhdGVfEBFfZXhjbHVkZWRGcm9tU3luY18QHF9tb3N0UmVjZW50VmVyc2lvbkRvd25sb2FkZWRVX3RhZ3NfEBRfaXNEb3dubG9hZFJlcXVlc3RlZF8QF19oYXNVbnJlc29sdmVkQ29uZmxpY3RzW19kb2N1bWVudElEViRjbGFzc1Zfc3RhdGVfEBJfdmVyc2lvbklkZW50aWZpZXJcX2l0ZW1WZXJzaW9uWV91c2VySW5mb1hfdHJhc2hlZF1fY2FwYWJpbGl0aWVzXxAUX3NoYXJlZEJ5Q3VycmVudFVzZXJfEBBfY29udGVudFpvbmVSb290XxAPX2luUGlubmVkRm9sZGVyXxAaX2lzQ29sbGFib3JhdGlvbkludml0YXRpb25fEBVfcGFyZW50SXRlbUlkZW50aWZpZXJfEA9fdXBsb2FkaW5nRXJyb3JfEBdfZWZmZWN0aXZlQ29udGVudFBvbGljeV8QEl9pbmhlcml0ZWRVc2VySW5mb18QGl9mcF9wYXJlbnREb21haW5JZGVudGlmaWVyW19pZ25vcmVSb290XxATX3NoYXJpbmdQZXJtaXNzaW9uc18QFF9vd25lck5hbWVDb21wb25lbnRzXxAUX3BsYWNlaG9sZElkZW50aWZpZXJfEB9fbW9zdFJlY2VudEVkaXRvck5hbWVDb21wb25lbnRzEQcAEAAQAAmAB4AAEBAJCAkIgAAJgAAIgBCAAAgIgAAIgAKABIAIgA0QAgiABoAAgACAAIAAgACABYAOCIAbgACAAAgJgAAJgACADggJgBGAAIAAgByAAIAYgAAIEiAAAAAICAkIgAOAAIAAgAAIgACAAIAAgABfEBJfX2ZwL2ZzL2RvY0lEKDQ4MylTbjE1XxArY29tLmFwcGxlLkNsb3VkRG9jcy5pQ2xvdWREcml2ZUZpbGVQcm92aWRlcl8QJEEzQkJBQ0VBLTBBNTctNDlBRi1BRkNFLTMwQjQxNzM1NTRGMV5UcmltIEFVRElPLm1wM1pUcmltIEFVRElP1aWmp6hEqaqrrK1dY29uc3RhbnRJbmRleFhkZWNsYXJlZFdkeW5hbWljWmlkZW50aWZpZXIQWIAKgAuACYAMWnB1YmxpYy5tcDMJCNKys7S1WiRjbGFzc25hbWVYJGNsYXNzZXNWVVRUeXBlorS2WE5TT2JqZWN0I0EXmvgAAAAA0rlEurtXTlMudGltZSNBxx5kZNqfhIAP0rKzvb5WTlNEYXRlor220rlEwLsjQcceZHYAAACAD9LDRMTHWk5TLm9iamVjdHOixcaAEoAVgBfTyUTKy8zNVl9sYWJlbFZfY29sb3KAE4AUEAZTUmVk0rKz0NFVRlBUYWei0LbTyUTK08zVgBaAFBADVlB1cnBsZdKys9jZXk5TTXV0YWJsZUFycmF5o9rbtl5OU011dGFibGVBcnJheVdOU0FycmF51d1E3t/gXuLjYeNUbGVkblFjUmNyUW2AAIAagBkIgBlA0rKz6OlfEB9fTlNGaWxlUHJvdmlkZXJFbXB0eUl0ZW1WZXJzaW9uo+rrtl8QH19OU0ZpbGVQcm92aWRlckVtcHR5SXRlbVZlcnNpb25fEBlOU0ZpbGVQcm92aWRlckl0ZW1WZXJzaW9uXxAkQkQzNTE2ODgtOEYzMi00QjY1LUExQUItOUQ3RDNBNDFCMTgw0rKz7u9WRlBJdGVtou62AAgAEQAaACQAKQAyADcASQBMAFEAUwBzAHkBFAEpAUMBXQFoAXUBhwGWAakBtwHEAesCCwIhAikCNQJJAlMCYQJ4AoAClwKyAsgC2gLwAv0DCwMgAy0DNwNEA1wDeQOcA7gDzAPaA/AD9QQJBCMEKwREBFYEewSKBKEErwTKBN4E/QUDBRoFNAVABUcFTgVjBXAFegWDBZEFqAW7Bc0F6gYCBhQGLgZDBmAGbAaCBpkGsAbSBtUG1wbZBtoG3AbeBuAG4QbiBuMG5AbmBucG6QbqBuwG7gbvBvAG8gbzBvUG9wb5BvsG/Qb+BwAHAgcEBwYHCAcKBwwHDgcPBxEHEwcVBxYHFwcZBxoHHAceBx8HIAciByQHJgcoByoHLAcuBy8HNAc1BzYHNwc4BzoHPAc+B0AHQQdDB0UHRwdJB14HYgeQB7cHxgfRB9wH6gfzB/sIBggICAoIDAgOCBAIGwgcCB0IIggtCDYIPQhACEkIUghXCF8IaAhqCG8Idgh5CH4IhwiJCI4ImQicCJ4IoAiiCKkIsAi3CLkIuwi9CMEIxgjMCM8I1gjYCNoI3AjjCOgI9wj7CQoJEgkdCSIJJAknCSkJKwktCS8JMAkyCTMJOAlaCV4JgAmcCcMJyAnPAAAAAAAAAgEAAAAAAAAA8AAAAAAAAAAAAAAAAAAACdI=" type="audio/mp3">
+  </audio>
+
+  <script>
+    const env = document.getElementById('env');
+    const flap = document.getElementById('flap');
+    const letter = document.getElementById('letter');
+    const bgm = document.getElementById('bgm');
+    let opened = false;
+
+    env.addEventListener('click', () => {
+      if (!opened) {
+        flap.style.transform = "rotateX(180deg)";
+        letter.style.top = "15%";
+        bgm.volume = 0.3;
+        bgm.play();
+        opened = true;
+        startBlossoms();
+      }
+    });
+
+    function startBlossoms() {
+      setInterval(() => {
+        const blossom = document.createElement('div');
+        blossom.classList.add('blossom');
+        blossom.innerHTML = '🌸';
+        blossom.style.left = Math.random() * 100 + 'vw';
+        blossom.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        document.body.appendChild(blossom);
+
+        setTimeout(() => blossom.remove(), 7000);
+      }, 300);
+    }
+  </script>
+</body>
+</html>
